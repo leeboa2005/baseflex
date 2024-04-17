@@ -94,14 +94,14 @@
 <script type="module" src="js/firebase.js"></script>
 <script>
     // 날씨 체크
-    window.onload = function () {
+
+    window.addEventListener('load', function () {
         fetch("http://spartacodingclub.shop/sparta_api/weather/seoul").then(res => res.json()).then(data => {
             let nowWeather = data['temp']
             const weather = document.querySelector('#weather');
             weather.innerHTML = `${nowWeather}° 입니다.`
         })
-
-    }
+    })
 
     // 영화기록하기 섹션 토글
     const saveBtn = document.querySelector('#savebtn');

@@ -29,7 +29,7 @@
                     <li><a href="#" class="nav-link px-2 text-white">시리즈</a></li>
                     <li><a href="#" class="nav-link px-2 text-white">영화</a></li>
                     <li><a href="#" class="nav-link px-2 text-white">내가 찜한 콘텐츠</a></li>
-                    <li>현재기온: <span id="weather"></span></li>
+                    <li>현재기온은 <span id="weather"></span>° 입니다.</li>
                 </ul>
 
                 <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search">
@@ -91,15 +91,25 @@
         </div>
     </div>
 </body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script type="module" src="js/firebase.js"></script>
 <script>
     // 날씨 체크
 
-    window.addEventListener('load', function () {
+    // window.addEventListener('load', function () {
+    //     fetch("http://spartacodingclub.shop/sparta_api/weather/seoul").then(res => res.json()).then(data => {
+    //         let nowWeather = data['temp']
+    //         const weather = document.querySelector('#weather');
+    //         weather.innerHTML = `${nowWeather}° 입니다.`
+    //     })
+    // })
+
+
+    // 날씨 데이터
+    $(document).ready(function () {
         fetch("http://spartacodingclub.shop/sparta_api/weather/seoul").then(res => res.json()).then(data => {
-            let nowWeather = data['temp']
-            const weather = document.querySelector('#weather');
-            weather.innerHTML = `${nowWeather}° 입니다.`
+            let number = data['temp']
+            $('#weather').text(number);
         })
     })
 

@@ -3,6 +3,6 @@ window.addEventListener('load', function () {
     fetch("http://spartacodingclub.shop/sparta_api/weather/seoul").then(res => res.json()).then(data => {
         let nowWeather = data['temp']
         const weather = document.querySelector('#weather');
-        weather.innerHTML = `${nowWeather}° 입니다.`
+        weather.innerHTML = `${nowWeather}`
     })
 })

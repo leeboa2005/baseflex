@@ -8,7 +8,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
-    <title>spartaflex</title>
+    <title>baseflex</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 </head>
@@ -24,7 +24,7 @@
                 </a>
 
                 <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
-                    <li><a href="#" class="nav-link px-2 text-danger">spartaflx</a></li>
+                    <li><a href="#" class="nav-link px-2 text-danger">baseflex</a></li>
                     <li><a href="#" class="nav-link px-2 text-white">시리즈</a></li>
                     <li><a href="#" class="nav-link px-2 text-white">시리즈</a></li>
                     <li><a href="#" class="nav-link px-2 text-white">영화</a></li>
@@ -91,96 +91,35 @@
         </div>
     </div>
 </body>
-<script type="module">
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-app.js";
-import { getFirestore } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
-import { collection, addDoc } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
-import { getDocs } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
+<script type="module" src="js/index.js"></script>
+<script>
+    // 날씨 체크
+    let url = "http://spartacodingclub.shop/sparta_api/weather/seoul";
+    fetch(url).then(res => res.json()).then(data => {
+        let nowWeather = data['temp']
+        const weather = document.querySelector('#weather');
+        weather.innerHTML = `${nowWeather}° 입니다.`
+    })
 
-const firebaseConfig = {
-    apiKey: "AIzaSyAGsQqlkELF_uAF-9IRnGKncwtJMPnlMdk",
-    authDomain: "sparta-78af9.firebaseapp.com",
-    projectId: "sparta-78af9",
-    storageBucket: "sparta-78af9.appspot.com",
-    messagingSenderId: "997780523184",
-    appId: "1:997780523184:web:1b28cc539b2fc7749a9375",
-    measurementId: "G-2SRMYQG2TK"
-};
+    // 영화기록하기 섹션 토글
+    const saveBtn = document.querySelector('#savebtn');
+    saveBtn.addEventListener('click', savebtnClick)
 
-const app = initializeApp(firebaseConfig);
-const db = getFirestore(app);
+    function savebtnClick() {
+        const postingBox = document.querySelector('.mypostingbox_container');
+        const openBtn = document.querySelector('.open_btn')
+        const closeBtn = document.querySelector('.close_btn')
+        if (postingBox.style.display == 'none') {
+            postingBox.style.display = '';
+            closeBtn.style.display = '';
+            openBtn.style.display = 'none';
+        } else {
+            postingBox.style.display = 'none';
+            closeBtn.style.display = 'none';
+            openBtn.style.display = 'inline-block';
+        }
 
-// 데이터 추가하기
-const postingBtn = document.querySelector('#postingbtn')
-postingBtn.addEventListener('click', postingBtnClick)
-
-async function postingBtnClick() {
-    let imageValue = document.querySelector('#image').value;
-    let titleValue = document.querySelector('#title').value;
-    let starValue = document.querySelector('#star option:checked').value;
-    let commentValue = document.querySelector('#comment').value;
-    let doc = {
-        'image': imageValue,
-        'title': titleValue,
-        'star': starValue,
-        'comment': commentValue,
-    };
-
-    await addDoc(collection(db, "movies"), doc);
-    alert('영화가 추가되었습니다!');
-    window.location.reload();
-}
-
-//데이터 읽기 및 카드 생성
-let docs = await getDocs(collection(db, "movies"));
-docs.forEach((doc) => {
-    const tagCol = document.querySelector(".mycards");
-    let row = doc.data();
-    let imageValue = row['image']
-    let titleValue = row['title']
-    let starValue = row['star']
-    let commentValue = row['comment']
-
-    tagCol.insertAdjacentHTML("beforeend", `  <div class="col">
-    <div class="card h-100">
-        <img src="${imageValue}"
-            class="card-img-top" alt="...">
-        <div class="card-body">
-            <h5 class="card-title">${titleValue}</h5>
-            <p class="card-star">${starValue}</p>
-            <p class="card-text">${commentValue}</p>
-        </div>
-    </div>
-</div>`)
-});
-
-// 영화기록하기 버튼 열고 닫기
-const saveBtn = document.querySelector('#savebtn');
-saveBtn.addEventListener('click', savebtnClick)
-
-function savebtnClick() {
-    const postingBox = document.querySelector('.mypostingbox_container');
-    const openBtn = document.querySelector('.open_btn')
-    const closeBtn = document.querySelector('.close_btn')
-    if (postingBox.style.display == 'none') {
-        postingBox.style.display = '';
-        closeBtn.style.display = '';
-        openBtn.style.display = 'none';
-    } else {
-        postingBox.style.display = 'none';
-        closeBtn.style.display = 'none';
-        openBtn.style.display = 'inline-block';
     }
-
-}
-
-// 날씨 체크
-let url = "http://spartacodingclub.shop/sparta_api/weather/seoul";
-fetch(url).then(res => res.json()).then(data => {
-    let nowWeather = data['temp']
-    const weather = document.querySelector('#weather');
-    weather.innerHTML = `${nowWeather}° 입니다.`
-})
 </script>
 
 </html>

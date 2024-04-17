@@ -91,11 +91,10 @@
         </div>
     </div>
 </body>
-<script type="module" src="js/index.js"></script>
+<script type="module" src="js/firebase.js"></script>
 <script>
     // 날씨 체크
-    let url = "http://spartacodingclub.shop/sparta_api/weather/seoul";
-    fetch(url).then(res => res.json()).then(data => {
+    fetch("http://spartacodingclub.shop/sparta_api/weather/seoul").then(res => res.json()).then(data => {
         let nowWeather = data['temp']
         const weather = document.querySelector('#weather');
         weather.innerHTML = `${nowWeather}° 입니다.`

@@ -60,3 +60,23 @@ docs.forEach((doc) => {
 </div>`)
 });
 
+ // 영화기록하기 섹션 토글
+ const saveBtn = document.querySelector('#savebtn');
+ saveBtn.addEventListener('click', savebtnClick)
+
+ function savebtnClick() {
+     const postingBox = document.querySelector('.mypostingbox_container');
+     const openBtn = document.querySelector('.open_btn')
+     const closeBtn = document.querySelector('.close_btn')
+     if (postingBox.style.display == 'none') {
+         postingBox.style.display = '';
+         closeBtn.style.display = '';
+         openBtn.style.display = 'none';
+     } else {
+         postingBox.style.display = 'none';
+         closeBtn.style.display = 'none';
+         openBtn.style.display = 'inline-block';
+     }
+
+ }
+

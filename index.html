@@ -91,47 +91,5 @@
         </div>
     </div>
 </body>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script type="module" src="js/firebase.js"></script>
-<script>
-    // 날씨 체크
-
-    // window.addEventListener('load', function () {
-    //     fetch("http://spartacodingclub.shop/sparta_api/weather/seoul").then(res => res.json()).then(data => {
-    //         let nowWeather = data['temp']
-    //         const weather = document.querySelector('#weather');
-    //         weather.innerHTML = `${nowWeather}° 입니다.`
-    //     })
-    // })
-
-
-    // 날씨 데이터
-    $(document).ready(function () {
-        fetch("http://spartacodingclub.shop/sparta_api/weather/seoul").then(res => res.json()).then(data => {
-            let number = data['temp']
-            $('#weather').text(number);
-        })
-    })
-
-    // 영화기록하기 섹션 토글
-    const saveBtn = document.querySelector('#savebtn');
-    saveBtn.addEventListener('click', savebtnClick)
-
-    function savebtnClick() {
-        const postingBox = document.querySelector('.mypostingbox_container');
-        const openBtn = document.querySelector('.open_btn')
-        const closeBtn = document.querySelector('.close_btn')
-        if (postingBox.style.display == 'none') {
-            postingBox.style.display = '';
-            closeBtn.style.display = '';
-            openBtn.style.display = 'none';
-        } else {
-            postingBox.style.display = 'none';
-            closeBtn.style.display = 'none';
-            openBtn.style.display = 'inline-block';
-        }
-
-    }
-</script>
-
 </html>

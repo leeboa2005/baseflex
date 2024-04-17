@@ -1,0 +1,97 @@
+* {
+    font-family: "Noto Sans KR", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 500;
+    font-style: normal;
+    word-break: keep-all;
+}
+
+body {
+    background-color: black !important;
+}
+
+/* header*/
+.me-lg-auto li:last-child {
+    padding: var(--bs-nav-link-padding-y) var(--bs-nav-link-padding-x);
+
+}
+
+/* main */
+.main_container {
+    background-position: center;
+    background-size: cover;
+    background-image: url('https://occ-0-1123-1217.1.nflxso.net/dnm/api/v6/6AYY37jfdO6hpXcMjf9Yu5cnmO0/AAAABeIfo7VL_VDyKnljV66IkR-4XLb6xpZqhpLSo3JUtbivnEW4s60PD27muH1mdaANM_8rGpgbm6L2oDgA_iELHZLZ2IQjG5lvp5d2.jpg?r=e6e.jpg');
+    color: #fff;
+    padding-top: 3rem;
+}
+
+.main_container .bg-body-tertiary {
+    background-color: transparent !important;
+}
+
+.main_container .bg-body-tertiary button {
+    margin-right: 5px;
+}
+
+.open_btn,
+.close_btn {
+    font-weight: 400;
+}
+
+.open_btn {
+    display: none;
+}
+
+/* mypostingbox */
+.mypostingbox_container {
+    width: 940px;
+    margin: 60px auto 60px auto;
+    border: 1px solid white;
+    padding: 20px;
+    border-radius: 5px;
+}
+
+.form-floating>input {
+    background-color: transparent;
+    color: white;
+}
+
+.form-floating>label {
+    color: white;
+}
+
+.input-group>label {
+    background-color: transparent;
+    color: white;
+}
+
+.mypostingbox_container>button {
+    width: 100%;
+}
+
+#star {
+    background-color: transparent;
+    color: white
+}
+
+/* mycards */
+.mycards_container {
+    margin: 20px auto 20px auto;
+    width: 940px;
+}
+
+@media (max-width: 767px) {
+
+    .mycards_container,
+    .mypostingbox_container {
+        width: 500px;
+    }
+}
+
+@media (max-width: 576px) {
+
+    .mycards_container,
+    .mypostingbox_container {
+        width: 320px;
+    }
+}
